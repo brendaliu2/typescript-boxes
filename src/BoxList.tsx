@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Box from "./Box";
 import NewBoxForm from "./NewBoxForm";
 
-interface BoxInterface {
+interface BoxListInterface {
   id: string;
   height: number;
   width: number;
@@ -15,16 +15,18 @@ interface BoxInterface {
  */
 
 function BoxList() {
-  const [boxes, setBoxes] = useState<[BoxInterface] | []>([])
+  
+  //TODO: Array brackets outside interface?
+  const [boxes, setBoxes] = useState<BoxListInterface[] | []>([])
 
   /** add box with given { id, width, height, backgroundColor } */
-  function add(newBox: BoxInterface) {
+  function add(newBox: BoxListInterface): void {
     setBoxes(boxes => [...boxes, newBox]);
   }
 
   /** remove box matching that id. */
-  function remove(id: string) {
-    setBoxes(boxes => boxes.filter(box => box.id !== id));
+  function remove(id: string): void {
+    setBoxes(boxes => boxes.filter((box: BoxListInterface) => box.id !== id));
   }
 
   return (

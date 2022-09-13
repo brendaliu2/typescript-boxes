@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { v4 as uuid } from 'uuid';
 
 /** Form for adding box.
@@ -12,15 +12,22 @@ import { v4 as uuid } from 'uuid';
  * BoxList -> NewBoxForm
  */
 
+interface NewBoxFormInterface{
+  height: string;
+  width: string;
+  backgroundColor: string;
+}
+
+//TODO: Should createBox be an interface?
 function NewBoxForm({ createBox }) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<NewBoxFormInterface>({
     height: "",
     width: "",
     backgroundColor: "",
   });
 
   /** Update form input. */
-  function handleChange(evt) {
+  function handleChange(evt: ChangeEvent<HTMLInputElement>): void {
     const { name, value } = evt.target;
     setFormData(formData => ({
       ...formData,
@@ -29,7 +36,7 @@ function NewBoxForm({ createBox }) {
   }
 
   /** Submit form: call function from parent & clear inputs. */
-  function handleSubmit(evt) {
+  function handleSubmit(evt: FormEvent): void {
     evt.preventDefault();
     createBox({ ...formData, id: uuid() });
     setFormData({ height: "", width: "", backgroundColor: "" });

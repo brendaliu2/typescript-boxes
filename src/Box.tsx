@@ -10,10 +10,18 @@
  * BoxList -> Box
  */
 
-function Box({ id, width = 5, height = 5, backgroundColor, remove }) {
+ interface BoxInterface {
+  id: string;
+  height: number;
+  width: number;
+  backgroundColor: string;
+  remove(id: string): void;
+}
+
+function Box({ id, width = 5, height = 5, backgroundColor, remove}: BoxInterface) {
 
   /** Remove a box. */
-  function handleRemove() {
+  function handleRemove(): void {
     remove(id);
   }
 
