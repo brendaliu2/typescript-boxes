@@ -12,14 +12,21 @@ import { v4 as uuid } from 'uuid';
  * BoxList -> NewBoxForm
  */
 
+
 interface NewBoxFormInterface{
   height: string;
   width: string;
   backgroundColor: string;
 }
 
-//TODO: Should createBox be an interface?
-function NewBoxForm({ createBox }) {
+interface NewBoxFormPropsInterface{
+  createBox(obj: {id: string}): void;
+}
+
+//interface just for props
+//No anys allowed!
+
+function NewBoxForm({ createBox }: NewBoxFormPropsInterface) {
   const [formData, setFormData] = useState<NewBoxFormInterface>({
     height: "",
     width: "",

@@ -16,8 +16,7 @@ interface BoxListInterface {
 
 function BoxList() {
   
-  //TODO: Array brackets outside interface?
-  const [boxes, setBoxes] = useState<BoxListInterface[] | []>([])
+  const [boxes, setBoxes] = useState<BoxListInterface[]>([])
 
   /** add box with given { id, width, height, backgroundColor } */
   function add(newBox: BoxListInterface): void {
@@ -26,7 +25,7 @@ function BoxList() {
 
   /** remove box matching that id. */
   function remove(id: string): void {
-    setBoxes(boxes => boxes.filter((box: BoxListInterface) => box.id !== id));
+    setBoxes(boxes => boxes.filter(box => box.id !== id));
   }
 
   return (
